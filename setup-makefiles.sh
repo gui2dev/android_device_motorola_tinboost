@@ -1,7 +1,7 @@
 #!/bin/sh
 
 VENDOR=allwinner
-DEVICE=SEDNAME
+DEVICE=tinboost
 OUTDIR=vendor/$VENDOR/$DEVICE
 MAKEFILE=../../../$OUTDIR/$DEVICE-vendor-blobs.mk
 
