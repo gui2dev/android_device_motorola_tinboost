@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VENDOR=allwinner
+VENDOR=motorola
 DEVICE=tinboost
 
 BASE=../../../vendor/$VENDOR/$DEVICE/proprietary
@@ -11,7 +11,8 @@ for FILE in `cat proprietary-files.txt | grep -v ^# | cut -f1 -d '#' | grep -v ^
     if [ ! -d $BASE/$DIR ]; then
         mkdir -p $BASE/$DIR
     fi
-    adb pull /system/$FILE $BASE/$FILE
+    echo ~/android-sdk-linux/platform-tools/adb pull /system/$FILE $BASE/$FILE
+    ~/android-sdk-linux/platform-tools/adb pull /system/$FILE $BASE/$FILE
 done
 
 ./setup-makefiles.sh

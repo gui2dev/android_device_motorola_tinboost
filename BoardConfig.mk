@@ -1,28 +1,55 @@
-# Copyright (C) 2011 The Android Open Source Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+USE_CAMERA_STUB := true
 
-# Use the non-open-source part, if present
--include vendor/allwinner/tinboost/BoardConfigVendor.mk
+# inherit from the proprietary version
+-include vendor/motorola/tinboost/BoardConfigVendor.mk
 
-# Use the part that is common between all allwinner
-include device/allwinner/common/BoardConfig.mk
+TARGET_NO_BOOTLOADER := true
+TARGET_BOARD_PLATFORM := msm7k
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 :=armeabi
+TARGERt_ARCH_VARIANT := cpu-a-neon
+TARGET_BOOTLOADER_BOARD_NAME := tinboost
+BOARD_USES_QCOM_HARDWARE := true
+BOARD_USES_QCOM_GPS := true
+BOARD_USES_QCOM_LIBS := true
+BOARD_USES_QCOM_LIBRPC := true
+BOARD_USE_QCOM_PMEM := true
+ARCH_ARM_HAVE_TLS_REGISTER := true
 
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/allwinner/tinboost/recovery_keys.c
+# Bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_BCM := true
 
-TARGET_KERNEL_CONFIG := tinboost_defconfig
 
-SW_BOARD_USES_GSENSOR_TYPE := bma250
-SW_BOARD_GSENSOR_XY_REVERT := true
-SW_BOARD_GSENSOR_DIRECT_X := true
-SW_BOARD_GSENSOR_DIRECT_Y := true
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom loglevel=1
+BOARD_KERNEL_BASE := 0x00200000
+BOARD_KERNEL_PAGESIZE := 2048
+
+# fix this up by examining /proc/mtd on a running device
+BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00540000
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00700000
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x08f00000
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x0a500000
+BOARD_FLASH_BLOCK_SIZE := 131072
+
+## PARTITION LAYOUT/INFO ##
+BOARD_DATA_DEVICE := /dev/block/mtdblock12
+BOARD_DATA_FILESYSTEM := yaffs2
+BOARD_DATA_FILESYSTEM_OPTIONS := rw,nosuid,nodev,noatime,nodiratime 0 0
+BOARD_SYSTEM_DEVICE := /dev/block/mtdblock11
+BOARD_SYSTEM_FILESYSTEM := yaffs2
+BOARD_SYSTEM_FILESYSTEM_OPTIONS := rw,noatime,nodiratime 0 0
+BOARD_CACHE_DEVICE := /dev/block/mtdblock9
+BOARD_CACHE_FILESYSTEM := yaffs2
+BOARD_CACHE_FILESYSTEM_OPTION := rw,nosuid,nodev,noatime,nodiratime 0 0
+BOARD_MISC_DEVICE := /dev/block/mtdblock16
+BOARD_BOOT_DEVICE := /dev/block/mtdblock10
+BOARD_RECOVERY_DEVICE := /dev/block/mtdblock13
+BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/vold/179:1
+
+TARGET_PREBUILT_KERNEL := kernel/motorola/tinboost/kernel
+TARGET_KERNEL_CONFIG := cyanogenmod_tinboost_defconfig 
+
+BOARD_HAS_NO_SELECT_BUTTON := true
+# Use this flag if the board has a ext4 partition larger than 2gb
+#BOARD_HAS_LARGE_FILESYSTEM := true

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VENDOR=allwinner
+VENDOR=motorola
 DEVICE=tinboost
 OUTDIR=vendor/$VENDOR/$DEVICE
 MAKEFILE=../../../$OUTDIR/$DEVICE-vendor-blobs.mk
