@@ -48,7 +48,7 @@ BOARD_RECOVERY_DEVICE := /dev/block/mtdblock13
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/vold/179:1
 
 TARGET_PREBUILT_KERNEL := kernel/motorola/tinboost/kernel
-TARGET_KERNEL_CONFIG := cyanogenmod_tinboost_defconfig 
+TARGET_KERNEL_CONFIG :=  msm7627a_defconfig
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 # Use this flag if the board has a ext4 partition larger than 2gb
